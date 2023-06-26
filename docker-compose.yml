@@ -1,0 +1,16 @@
+services:
+  backend:
+    build:
+      context: ./myheroes
+      dockerfile: Dockerfile
+    ports: 
+      - 8080:8080
+    working_dir: /myheroes
+    
+  frontend:
+    build:
+      context: ./angular-tour-of-heroes
+      dockerfile: Dockerfile
+    ports: 
+      - 4200:4200
+    working_dir: /angular-tour-of-heroes

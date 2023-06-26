@@ -1,0 +1,21 @@
+<ng-container *ngIf="isLoggedIn(); else loginHeader">
+  <header>
+    <h1>{{title}}</h1>
+    <nav>
+      <a routerLink="/dashboard" routerLinkActive="active">Dashboard</a>
+      <a routerLink="/heroes" routerLinkActive="active">Heroes</a>
+      <a class="logout-btn" (click)="logout()">Logout</a>
+    </nav>
+  </header>
+  
+  <main>
+    <router-outlet></router-outlet>
+    <app-messages></app-messages>
+  </main>
+</ng-container>
+
+<ng-template #loginHeader>
+  <header>
+    <app-login></app-login>
+  </header>
+</ng-template>
