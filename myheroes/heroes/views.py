@@ -13,7 +13,7 @@ from .models import Hero
 
 
 @login_required
-def heroes_list(request):
+def list_or_create_hero(request):
     if not request.user or not request.user.is_authenticated:
         return JsonResponse({'message': 'User does not exist or is not authenticated'}, status=403)
     if request.method == "GET":
@@ -28,7 +28,7 @@ def heroes_list(request):
         return JsonResponse(response_data, status=201)
 
 @login_required
-def hero_function(request, pk):
+def get_or_update_hero(request, pk):
     if not request.user or not request.user.is_authenticated:
         return JsonResponse({'message': 'User does not exist or is not authenticated'}, status=403)
     if request.method == "GET":
@@ -78,7 +78,7 @@ def login_user(request):
             login(request, user)
             return JsonResponse({'message': 'Login successful', 'username': input_username}, status=200)
         else:
-            return JsonResponse({'error': 'Username or Password incorrect'})
+            return JsonResponse({'error': 'Username or Password incorrect'}, status=403)
     except json.JSONDecodeError:
         return JsonResponse({'error': 'Invalid JSON data'}, status=400)
 
