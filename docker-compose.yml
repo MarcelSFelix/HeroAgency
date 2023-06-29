@@ -6,6 +6,8 @@ services:
     ports: 
       - 8080:8080
     working_dir: /myheroes
+    volumes:
+      - ./myheroes:/myheroes
     
   frontend:
     build:
