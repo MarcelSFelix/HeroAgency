@@ -6,4 +6,4 @@ services:
     
   frontend:
     ports: 
-      - 4200:4200
+      - 4201:80
