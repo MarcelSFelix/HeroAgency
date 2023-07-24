@@ -20,8 +20,6 @@ COPY . .
 # Build the application
 RUN npm run build
 
-RUN ls /angular-tour-of-heroes/dist
-
 # NGINX Magic - Serve app with nginx server
 
 FROM nginx:latest AS ngi
