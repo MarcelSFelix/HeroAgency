@@ -26,5 +26,6 @@ services:
       context: ./nginx
       dockerfile: Dockerfile
     volumes:
-    - ./angular-tour-of-heroes/dist/angular-tour-of-heroes:/usr/share/nginx/html
+    - ./angular-tour-of-heroes:/usr/share/nginx/html
+    - ./nginx/conf.d:/etc/nginx/conf.d
 
