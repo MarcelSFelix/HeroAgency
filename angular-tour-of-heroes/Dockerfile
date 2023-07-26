@@ -1,33 +1,24 @@
 # syntax=docker/dockerfile:1
-# Install Node and npm
-FROM node:18.15.0 as build
+# Above specifies Dockerfile syntax version
+
+# Sets base image for Docker image install Node and npm
+FROM node:18.15.0
 
 # Set working directory
 WORKDIR /angular-tour-of-heroes
 
-# Install Angular CLI
+# Install Angular CLI globally inside image 
 RUN npm install -g @angular/cli
 
-# Copy package.json and package-lock.json
+# Copy package.json and package-lock.json from host into container
 COPY package*.json ./
 
-# Install dependencies
+# Install dependencies from package.lock.json
 RUN npm ci
 
-# Copy the rest of the code
+# Copy the rest of the code from the host into the containers working directory
 COPY . .
 
-# Build the application
+# Build the application into workdir/dist/angular-tour-of-heroes
 RUN npm run build
 
-# NGINX Magic - Serve app with nginx server
-
-FROM nginx:latest AS ngi
-
-COPY --from=build /angular-tour-of-heroes/dist/angular-tour-of-heroes /usr/share/nginx/html
-COPY /nginx.conf /etc/nginx/conf.d/default.conf
-# Below does not work - "server" directive is not allowed here in /etc/nginx/nginx.conf:1
-# COPY /nginx.conf /etc/nginx/nginx.conf
-
-# Starts at localhost:80
-EXPOSE 80

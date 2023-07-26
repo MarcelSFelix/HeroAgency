@@ -4,6 +4,6 @@ services:
       - 8080:8080
     
     
-  frontend:
+  nginx:
     ports: 
       - 4201:80
