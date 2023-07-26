@@ -32,7 +32,7 @@ $RECYCLE.BIN/
 *.code-workspace
 
 # Compiled output
-/dist
+*/dist
 /tmp
 /out-tsc
 /bazel-out
